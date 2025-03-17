@@ -14,7 +14,7 @@ export default function Home() {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:5001/anime")
+        axios.get("https://hokage-backend.onrender.com/anime")
             .then(res => {
                 setAnimeList(res.data);
                 setLoading(false);
@@ -32,7 +32,7 @@ export default function Home() {
                 setUserId(decoded.userId);
 
                 // Fetch favorite animes
-                axios.get("http://localhost:5001/favourite_anime", { 
+                axios.get("https://hokage-backend.onrender.com/favourite_anime", { 
                     headers: {
                         Authorization: `Bearer ${token}`
                     },
@@ -42,7 +42,7 @@ export default function Home() {
                     .catch(err => console.error("Error fetching favorites:", err));
 
                 // Fetch watch later animes
-                axios.get("http://localhost:5001/watch_later", { 
+                axios.get("https://hokage-backend.onrender.com/watch_later", { 
                     headers: {
                         Authorization: `Bearer ${token}`
                     },
@@ -69,7 +69,7 @@ export default function Home() {
 
         try {
             if (isFavorited) {
-                await axios.delete(`http://localhost:5001/favourite_anime/${anime._id}`, { 
+                await axios.delete(`https://hokage-backend.onrender.com/favourite_anime/${anime._id}`, { 
                     headers: {
                         Authorization: `Bearer ${token}`
                     },
@@ -77,7 +77,7 @@ export default function Home() {
                 });
                 updatedFavorites.delete(anime._id);
             } else {
-                await axios.post("http://localhost:5001/favourite_anime", 
+                await axios.post("https://hokage-backend.onrender.com/favourite_anime", 
                     { userId, animeId: anime._id, title: anime.title, description: anime.description, youtubeEmbedUrl: anime.youtubeEmbedUrl },
                     { 
                         headers: {
@@ -105,7 +105,7 @@ export default function Home() {
 
         try {
             if (isInWatchLater) {
-                await axios.delete(`http://localhost:5001/watch_later/${anime._id}`, { 
+                await axios.delete(`https://hokage-backend.onrender.com/watch_later/${anime._id}`, { 
                     headers: {
                         Authorization: `Bearer ${token}`
                     },
@@ -113,7 +113,7 @@ export default function Home() {
                 });
                 updatedWatchLater.delete(anime._id);
             } else {
-                await axios.post("http://localhost:5001/watch_later", 
+                await axios.post("https://hokage-backend.onrender.com/watch_later", 
                     { userId, animeId: anime._id, title: anime.title, description: anime.description, youtubeEmbedUrl: anime.youtubeEmbedUrl },
                     { 
                         headers: {
