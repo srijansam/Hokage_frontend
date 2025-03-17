@@ -11,7 +11,7 @@ const Navbar = ({ setSearchQuery }) => {
     useEffect(() => {
         const token = localStorage.getItem("token");
 
-        axios.get("http://localhost:5001/user", {
+        axios.get("https://hokage-backend.onrender.com/user", {
             headers: token ? { Authorization: `Bearer ${token}` } : {},
             withCredentials: true
         })

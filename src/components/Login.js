@@ -21,7 +21,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5001/login", { email, password });
+      const res = await axios.post("https://hokage-backend.onrender.com/login", { email, password });
       localStorage.setItem("token", res.data.token);
       //alert("Login Successful");
       navigate("/home");
@@ -31,7 +31,7 @@ export default function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5001/auth/google";
+    window.location.href = "https://hokage-backend.onrender.com/auth/google";
   };
   
   // Open forgot password modal
@@ -60,7 +60,7 @@ export default function Login() {
     
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:5001/forgot-password", { 
+      const response = await axios.post("https://hokage-backend.onrender.com/forgot-password", { 
         email: forgotPasswordEmail 
       });
       setResetMessage({ text: "Verification code sent to your email", type: "success" });
@@ -85,7 +85,7 @@ export default function Login() {
     
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:5001/verify-reset-code", {
+      const response = await axios.post("https://hokage-backend.onrender.com/verify-reset-code", {
         email: forgotPasswordEmail,
         code: verificationCode
       });
@@ -123,7 +123,7 @@ export default function Login() {
     
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:5001/reset-password", {
+      const response = await axios.post("https://hokage-backend.onrender.com/reset-password", {
         email: forgotPasswordEmail,
         code: verificationCode,
         newPassword: newPassword
